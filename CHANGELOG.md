@@ -1,3 +1,10 @@
+# [1.1.0](https://github.com/wow-actions/parse-inputs/compare/v1.0.1...v1.1.0) (2022-10-26)
+
+
+### Features
+
+* add `booleanOrString` type ([dcfcc02](https://github.com/wow-actions/parse-inputs/commit/dcfcc02cac9487fedfe41bbe7f1c80cc81c5a21a))
+
 ## [1.0.1](https://github.com/wow-actions/parse-inputs/compare/v1.0.0...v1.0.1) (2022-10-26)
 
 # 1.0.0 (2022-10-26)
