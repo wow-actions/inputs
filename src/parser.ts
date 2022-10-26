@@ -23,6 +23,14 @@ export function boolean(input: string) {
   throw new Error()
 }
 
+export function booleanOrString(input: string) {
+  try {
+    return boolean(input)
+  } catch (error) {
+    return input
+  }
+}
+
 export function words(input: string): string[] {
   return input
     .replace(/[\n\r\s\t]+/g, ',')

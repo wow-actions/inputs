@@ -9,6 +9,7 @@ type TypeMap = {
   int: number
   float: number
   boolean: boolean
+  booleanOrString: boolean | string
   words: string[]
   intArray: number[]
   floatArray: number[]
