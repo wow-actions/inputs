@@ -1,0 +1,82 @@
+{
+  "name": "@wow-actions/parse-inputs",
+  "version": "1.0.0",
+  "description": "Utility method to parse action's inputs",
+  "main": "lib/index.js",
+  "module": "es/index.js",
+  "types": "lib/index.d.ts",
+  "files": [
+    "es",
+    "lib"
+  ],
+  "keywords": [
+    "parse",
+    "action",
+    "inputs"
+  ],
+  "scripts": {
+    "lint": "eslint 'src/**/*.{js,ts}?(x)' --fix",
+    "clean": "rimraf es lib",
+    "build:esm": "tsc --module esnext --target es2017 --outDir ./es",
+    "build:cjs": "tsc --module commonjs --target es5 --outDir ./lib",
+    "build": "run-p build:esm build:cjs",
+    "prebuild": "run-s lint clean",
+    "prepare": "is-ci || husky install .husky"
+  },
+  "lint-staged": {
+    "**/*.{js,jsx,tsx,ts,less,md,json}": [
+      "pretty-quick —-staged"
+    ],
+    "*.ts": [
+      "eslint --fix"
+    ]
+  },
+  "release": {
+    "extends": "@bubkoo/semantic-release-config"
+  },
+  "license": "MIT",
+  "author": {
+    "name": "bubkooo",
+    "email": "bubkoo.wy@gmail.com"
+  },
+  "peerDependencies": {
+    "@actions/core": "^1.0.0"
+  },
+  "devDependencies": {
+    "@actions/core": "^1.10.0",
+    "@bubkoo/commitlint-config": "^1.0.1",
+    "@bubkoo/eslint-config": "^1.2.0",
+    "@bubkoo/semantic-release-config": "^1.3.0",
+    "@bubkoo/tsconfig": "^1.0.0",
+    "@types/js-yaml": "^4.0.5",
+    "@types/lodash.camelcase": "^4.3.7",
+    "@types/lodash.kebabcase": "^4.1.7",
+    "@types/lodash.uniq": "^4.5.7",
+    "@types/parse-json": "^4.0.0",
+    "eslint": "^8.22.0",
+    "husky": "^8.0.1",
+    "is-ci": "^3.0.1",
+    "npm-run-all": "^4.1.5",
+    "prettier": "^2.7.1",
+    "pretty-quick": "^3.1.3",
+    "rimraf": "^3.0.2",
+    "tslib": "^2.4.0",
+    "typescript": "^4.8.2"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/wow-actions/parse-inputs.git"
+  },
+  "bugs": {
+    "url": "https://github.com/wow-actions/parse-inputs/issues"
+  },
+  "homepage": "https://github.com/wow-actions/parse-inputs#readme",
+  "dependencies": {
+    "js-yaml": "^4.1.0",
+    "lodash.camelcase": "^4.3.0",
+    "lodash.kebabcase": "^4.1.1",
+    "lodash.uniq": "^4.5.0",
+    "parse-json": "^6.0.2",
+    "strip-json-comments": "^5.0.0"
+  }
+}

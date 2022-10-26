@@ -1,2 +1,3 @@
-# inputs
-Parse action's inputs
+# parse-inputs
+
+Utility method to parse action's inputs
