@@ -1,3 +1,5 @@
+## [1.0.1](https://github.com/wow-actions/parse-inputs/compare/v1.0.0...v1.0.1) (2022-10-26)
+
 # 1.0.0 (2022-10-26)
 
 
