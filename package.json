@@ -79,5 +79,9 @@
     "lodash.uniq": "^4.5.0",
     "parse-json": "^6.0.2",
     "strip-json-comments": "^5.0.0"
+  },
+  "publishConfig": {
+    "access": "public",
+    "registry": "https://registry.npmjs.org"
   }
 }
