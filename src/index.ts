@@ -1,47 +1,18 @@
 import * as core from '@actions/core'
-import uniq from 'lodash.uniq'
-import camelCase from 'lodash.camelcase'
-import kebabCase from 'lodash.kebabcase'
 import * as parser from './parser'
-
-type TypeMap = {
-  string: string
-  int: number
-  float: number
-  boolean: boolean
-  booleanOrString: boolean | string
-  words: string[]
-  intArray: number[]
-  floatArray: number[]
-  stringArray: string[]
-  booleanArray: boolean[]
-  json: any
-}
-
-type Types = keyof TypeMap
-
-interface Options<T extends Types = Types> extends core.InputOptions {
-  type: T
-  defaultValue?: TypeMap[T]
-}
-
-function getNames(raw: string) {
-  const candidates: string[] = [raw, camelCase(raw), kebabCase(raw)]
-  const names: string[] = uniq(candidates)
-  return names
-}
+import { getNames } from './util'
+import { Options, TypeMap, Types, NTypes } from './types'
 
 function getBooleanInput<T extends Types>(key: string, options: Options<T>) {
   const type = options.type
   const names = getNames(key)
   const errors: Error[] = []
-  let value: boolean | boolean[] | undefined
 
   for (let i = 0; i < names.length; i++) {
     const name = names[i]
     if (type === 'boolean') {
       try {
-        value = core.getBooleanInput(name, options)
+        const value = core.getBooleanInput(name, options)
         if (typeof value === 'boolean') {
           return value
         }
@@ -52,8 +23,7 @@ function getBooleanInput<T extends Types>(key: string, options: Options<T>) {
       try {
         const raw = core.getInput(name, options)
         if (raw) {
-          value = parser.booleanArray(raw)
-          return value
+          return parser.booleanArray(raw)
         }
       } catch (error) {
         errors.push(
@@ -78,13 +48,12 @@ function getBooleanInput<T extends Types>(key: string, options: Options<T>) {
 function getMultilineInput<T extends Types>(key: string, options: Options<T>) {
   const names = getNames(key)
   const errors: Error[] = []
-  let value: string[]
   for (let i = 0; i < names.length; i++) {
     const name = names[i]
     try {
-      value = core.getMultilineInput(name, options)
-      if ((value as string[]).length) {
-        return value
+      const raw = core.getInput(name, options)
+      if (raw) {
+        return core.getMultilineInput(name, options)
       }
     } catch (error) {
       errors.push(error)
@@ -117,10 +86,7 @@ function getInput<T extends Types>(
   const names = getNames(key)
   const errors: Error[] = []
 
-  const ntype = options.type as keyof Omit<
-    TypeMap,
-    'boolean' | 'booleanArray' | 'stringArray'
-  >
+  const ntype = options.type as NTypes
 
   for (let i = 0; i < names.length; i++) {
     try {
@@ -141,13 +107,31 @@ function getInput<T extends Types>(
   if (errors.length) {
     throw errors[0]
   }
+}
 
-  return undefined
+export function getObjectInput<T>(name: string, options?: core.InputOptions) {
+  const errors: Error[] = []
+  const names = getNames(name)
+  for (let i = 0; i < names.length; i++) {
+    const name = names[i]
+    try {
+      const raw = core.getInput(name, options)
+      if (raw) {
+        return parser.json<T>(raw)
+      }
+    } catch (error) {
+      errors.push(error)
+    }
+  }
+
+  if (errors.length) {
+    throw errors[0]
+  }
 }
 
 export function parseInputs<S extends Record<string, Options>>(schema: S) {
   return Object.keys(schema).reduce<{
-    [K in keyof S]: TypeMap[S[K]['type']]
+    [K in keyof S]?: TypeMap[S[K]['type']]
   }>((memo, key) => {
     const options = schema[key]
     memo[key as keyof S] = getInput(key, options) as any

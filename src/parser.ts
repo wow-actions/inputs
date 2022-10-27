@@ -1,4 +1,4 @@
-import yaml from 'js-yaml'
+import yml from 'js-yaml'
 import parseJson from 'parse-json'
 import stripJsonComments from 'strip-json-comments'
 
@@ -51,11 +51,19 @@ export function booleanArray(input: string) {
   return words(input).map(boolean)
 }
 
-export function json(input: string) {
+export function yaml<T>(input: string) {
+  return yml.load(input) as T
+}
+
+export function json<T>(input: string) {
+  return parseJson(stripJsonComments(input)) as T
+}
+
+export function object<T>(input: string) {
   const raw = input.trim()
   if (raw.startsWith('{') || raw.startsWith('[')) {
-    return parseJson(stripJsonComments(input))
+    return json<T>(input)
   }
 
-  return yaml.load(input)
+  return yaml<T>(input)
 }
