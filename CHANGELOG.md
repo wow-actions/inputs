@@ -1,3 +1,11 @@
+# [1.2.0](https://github.com/wow-actions/parse-inputs/compare/v1.1.0...v1.2.0) (2022-10-27)
+
+
+### Features
+
+* add `getObjectInput` to parse json/yaml inputs ([f012c53](https://github.com/wow-actions/parse-inputs/commit/f012c53d102c24eb1ce414c96070024128c41ad3))
+* support snakecase name ([493b585](https://github.com/wow-actions/parse-inputs/commit/493b585f70cd4a5e49cbebc749834000e4888d3b))
+
 # [1.1.0](https://github.com/wow-actions/parse-inputs/compare/v1.0.1...v1.1.0) (2022-10-26)
 
 
