@@ -821,6 +821,13 @@
   dependencies:
     "@types/lodash" "*"
 
+"@types/lodash.snakecase@^4.1.7":
+  version "4.1.7"
+  resolved "https://registry.npmmirror.com/@types/lodash.snakecase/-/lodash.snakecase-4.1.7.tgz#2a1ca7cbc08b63e7c3708f6291222e69b0d3216d"
+  integrity sha512-nv9M+JJokFyfZ9QmaWVXZu2DfT40K0GictZaA8SwXczp3oCzMkjp7PtvUBQyvdoG9SnlCpoRXZDIVwQRzJbd9A==
+  dependencies:
+    "@types/lodash" "*"
+
 "@types/lodash.uniq@^4.5.7":
   version "4.5.7"
   resolved "https://registry.npmmirror.com/@types/lodash.uniq/-/lodash.uniq-4.5.7.tgz#0773960ec0148b29e6a54821a65b878a0ebb5c1a"
@@ -3194,6 +3201,11 @@ lodash.merge@^4.6.2:
   version "4.6.2"
   resolved "https://registry.npmmirror.com/lodash.merge/-/lodash.merge-4.6.2.tgz#558aa53b43b661e1925a0afdfa36a9a1085fe57a"
   integrity sha512-0KpjqXRVvrYyCsX1swR/XTK0va6VQkQM6MNo7PqW77ByjAhoARA8EfrP1N4+KlKj8YS0ZUCtRT/YUuhyYDujIQ==
+
+lodash.snakecase@^4.1.1:
+  version "4.1.1"
+  resolved "https://registry.npmmirror.com/lodash.snakecase/-/lodash.snakecase-4.1.1.tgz#39d714a35357147837aefd64b5dcbb16becd8f8d"
+  integrity sha512-QZ1d4xoBHYUeuouhEq3lk3Uq7ldgyFXGBhg04+oRLnIz8o9T65Eh+8YdroUwn846zchkA9yDsDl5CVVaV2nqYw==
 
 lodash.uniq@^4.5.0:
   version "4.5.0"
