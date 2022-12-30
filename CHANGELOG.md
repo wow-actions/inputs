@@ -1,3 +1,15 @@
+# [2.0.0](https://github.com/wow-actions/parse-inputs/compare/v1.2.0...v2.0.0) (2022-12-30)
+
+
+### Features
+
+* handle "required" option manually ([c5dabe1](https://github.com/wow-actions/parse-inputs/commit/c5dabe170b135a5ba0dd55d734d77ba263894b82))
+
+
+### BREAKING CHANGES
+
+* remove useless api
+
 # [1.2.0](https://github.com/wow-actions/parse-inputs/compare/v1.1.0...v1.2.0) (2022-10-27)
 
 
