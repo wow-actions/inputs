@@ -1,9 +1,9 @@
 import { InputOptions } from '@actions/core'
 
 export type TypeMap = {
-  string: string
   int: number
   float: number
+  string: string
   boolean: boolean
   booleanOrString: boolean | string
   words: string[]
@@ -18,10 +18,14 @@ export type TypeMap = {
 
 export type Types = keyof TypeMap
 
-export type NTypes = keyof Omit<
-  TypeMap,
-  'boolean' | 'booleanArray' | 'stringArray'
->
+export type ArrayTypes =
+  | 'words'
+  | 'intArray'
+  | 'floatArray'
+  | 'stringArray'
+  | 'booleanArray'
+
+export type NTypes = keyof Omit<TypeMap, 'stringArray'>
 
 export interface Options<T extends Types = Types> extends InputOptions {
   type: T

@@ -2,36 +2,31 @@ import yml from 'js-yaml'
 import parseJson from 'parse-json'
 import stripJsonComments from 'strip-json-comments'
 
-export function string(input: string) {
-  return input
-}
+export const string = (input: string) => input
+export const int = (input: string) => parseInt(input, 10)
+export const float = (input: string) => parseFloat(input)
 
-export function int(input: string) {
-  return parseInt(input, 10)
-}
-
-export function float(input: string) {
-  return parseFloat(input)
-}
-
-export function boolean(input: string) {
+export function boolean(input: string, key: string) {
   const trueValue = ['true', 'True', 'TRUE']
   const falseValue = ['false', 'False', 'FALSE']
 
   if (trueValue.includes(input)) return true
   if (falseValue.includes(input)) return false
-  throw new Error()
+  throw new TypeError(
+    `Input does not meet YAML 1.2 "Core Schema" specification: ${key}\n` +
+      `Support boolean input list: \`true | True | TRUE | false | False | FALSE\``,
+  )
 }
 
-export function booleanOrString(input: string) {
+export function booleanOrString(input: string, key: string) {
   try {
-    return boolean(input)
+    return boolean(input, key)
   } catch (error) {
     return input
   }
 }
 
-export function words(input: string): string[] {
+export function words(input: string) {
   return input
     .replace(/[\n\r\s\t]+/g, ',')
     .split(',')
@@ -39,16 +34,12 @@ export function words(input: string): string[] {
     .filter((n) => n.length > 0)
 }
 
-export function intArray(input: string) {
-  return words(input).map(int)
-}
+export const intArray = (input: string) => words(input).map(int)
 
-export function floatArray(input: string) {
-  return words(input).map(float)
-}
+export const floatArray = (input: string) => words(input).map(float)
 
-export function booleanArray(input: string) {
-  return words(input).map(boolean)
+export function booleanArray(input: string, key: string) {
+  return words(input).map((word) => boolean(word, key))
 }
 
 export function yaml<T>(input: string) {
