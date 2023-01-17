@@ -36,9 +36,13 @@ function getInput<T extends Types>(
   }
 }
 
+type DefaultValueTypes = string | number | boolean | Array<any> | object
+
 export function parseInputs<S extends Record<string, Options>>(schema: S) {
   return Object.keys(schema).reduce<{
     [K in keyof S]: S[K]['required'] extends true
+      ? TypeMap[S[K]['type']]
+      : S[K]['defaultValue'] extends DefaultValueTypes
       ? TypeMap[S[K]['type']]
       : S[K]['type'] extends ArrayTypes
       ? TypeMap[S[K]['type']]
