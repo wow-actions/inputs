@@ -1,3 +1,10 @@
+## [2.0.1](https://github.com/wow-actions/parse-inputs/compare/v2.0.0...v2.0.1) (2023-01-30)
+
+
+### Bug Fixes
+
+* should return none-undefined value when `defaultValue` is specified ([9949728](https://github.com/wow-actions/parse-inputs/commit/994972863af37818adf05dd3e28881e81674701d))
+
 # [2.0.0](https://github.com/wow-actions/parse-inputs/compare/v1.2.0...v2.0.0) (2022-12-30)
 
 
